@@ -47,6 +47,21 @@ public class BookingService {
 		return booking.getBookingId();
 	}
 	
+	//updateBookingDate(long):boolean
+//	public boolean updateBookingDate (Booking b) {
+//		boolean result = false;
+//		Booking b1 =null;
+//		Optional<Booking> booking = bookingRepository.findById(b.getId());
+//		if(booking.isPresent()) {
+//			b1 = booking.get();
+//			b1.setDate(b.getDate());
+//			result = true;
+//		} else {
+//			throw new BookingNotFoundException("booking doesn't exist!!!");
+//		}
+//		return result;
+//	}
+	
 	public boolean updateBookingDate(long bookingId) {
 		boolean result = false;
 		Optional<Booking> b = bookingRepository.findByBookingId(bookingId);
