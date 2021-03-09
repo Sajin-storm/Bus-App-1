@@ -29,12 +29,12 @@ public class Booking {
 	LocalTime journeyEndTime;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-	User user; //many bookings can be done by 1 user  or 1 user can book many bookings
+	User user; 
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	BusRoute busRoute;
 	
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne(cascade = CascadeType.ALL)
 	Bus bus;
 	
 	public Booking() {

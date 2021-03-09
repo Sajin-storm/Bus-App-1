@@ -21,7 +21,7 @@ import com.cap.sprint.BusApp.repos.FeedbackRepository;
 import com.cap.sprint.BusApp.repos.UserRepository;
 
 @Service
-public class BookingService {
+public class BookingServiceImpl {
 	
 	@Autowired
 	BookingRepository bookingRepository;
@@ -46,22 +46,7 @@ public class BookingService {
 		}
 		return booking.getBookingId();
 	}
-	
-	//updateBookingDate(long):boolean
-//	public boolean updateBookingDate (Booking b) {
-//		boolean result = false;
-//		Booking b1 =null;
-//		Optional<Booking> booking = bookingRepository.findById(b.getId());
-//		if(booking.isPresent()) {
-//			b1 = booking.get();
-//			b1.setDate(b.getDate());
-//			result = true;
-//		} else {
-//			throw new BookingNotFoundException("booking doesn't exist!!!");
-//		}
-//		return result;
-//	}
-	
+		
 	public boolean updateBookingDate(long bookingId) {
 		boolean result = false;
 		Optional<Booking> b = bookingRepository.findByBookingId(bookingId);
@@ -126,20 +111,16 @@ public class BookingService {
 		return booking;
 	}
 	
-	
-	
-	
-	
-	
-	
 	//addFeedback(User,Long):void
 	public void addFeedback(User user,long bookingId) {
+		
 		Optional<Booking> booking = bookingRepository.findByBookingId(bookingId);
 		Booking b = null;
 		Feedback f = new Feedback();
 		if(booking.isPresent()) {
 			b = booking.get();
-		} else {
+		} 
+		else {
 			throw new BookingNotFoundException("Booking not found");
 		}
 		
@@ -179,49 +160,6 @@ public class BookingService {
 	feedback.setUser(u);
 	feedbackRepository.save(feedback);
 	}
-	
-	
-	
-//	List<Feedback> f = feedbackRepository.findByUserUsername(username);
-//	for (Feedback f1 : f) {
-//		if(f1.getComment() == comment) {
-//			f1.setRouteName(b.getBusRoute().getRouteName());
-//			f1.setComment(comment);
-//			f1.setUsername(username);
-//			f1.setUser(u);
-//			feedbackRepository.save(f1);
-//		} else {
-//			throw new UserNotFoundException("feedback already exist");
-//		}
-//	}
-	
-	//getAllBookingsById(String):List<Booking> 3 methods 
-//	//busNumber
-//	public List<Booking> getAllBookingByBusNumber(String s) {
-//		List<Booking> booking = bookingRepository.findByBusNumber(s);
-//		if(booking.isEmpty()) {
-//			throw new BookingNotFoundException("bookings not found!!!");
-//		}
-//		return booking;
-//	}
-//	
-//	//source
-//	public List<Booking> getAllBookingBySource(String s){
-//		List<Booking> booking = bookingRepository.findBySource(s);
-//		if(booking.isEmpty()) {
-//			throw new BookingNotFoundException("bookings not found!!!");
-//		}
-//		return booking;
-//	}
-//	
-//	//destination
-//	public List<Booking> getAllBookingByDestination(String s){
-//		List<Booking> booking = bookingRepository.findByDestination(s);
-//		if(booking.isEmpty()) {
-//			throw new BookingNotFoundException("bookings not found!!!");
-//		}
-//		return booking;
-//	}
 	
 	
 }

@@ -22,4 +22,8 @@ public interface FeedbackRepository extends JpaRepository<Feedback,Integer>{
 
 	public List<Feedback> findByBusOperatorBusOperatorUsername(String busOperatorusername);
 
+	public List<Feedback> findByRouteNameAndBusOperatorBusOperatorUsername(String routeName,
+			String busOperatorUsername);
+
+	
 }

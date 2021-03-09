@@ -7,13 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.cap.sprint.BusApp.entities.User;
-import com.cap.sprint.BusApp.services.UserService;
+import com.cap.sprint.BusApp.services.UserServiceImpl;
 
 @SpringBootTest
 class TestUserService {
 	
 	@Autowired
-	UserService userService;
+	UserServiceImpl userService;
 	
 	@Test
 	void testAddUser() {

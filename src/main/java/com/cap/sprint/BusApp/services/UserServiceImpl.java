@@ -12,7 +12,7 @@ import com.cap.sprint.BusApp.exception.UserNotFoundException;
 import com.cap.sprint.BusApp.repos.UserRepository;
 
 @Service
-public class UserService {
+public class UserServiceImpl {
 	
 	@Autowired
 	UserRepository userRepository;

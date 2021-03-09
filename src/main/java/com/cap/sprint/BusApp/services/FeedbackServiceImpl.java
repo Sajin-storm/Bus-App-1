@@ -15,7 +15,7 @@ import com.cap.sprint.BusApp.repos.FeedbackRepository;
 import com.cap.sprint.BusApp.repos.UserRepository;
 
 @Service
-public class FeedbackService {
+public class FeedbackServiceImpl {
 	
 	@Autowired
 	FeedbackRepository feedbackRepository;
@@ -40,12 +40,12 @@ public class FeedbackService {
 	
 	
 	public List<Feedback> viewAllFeedbacks(String routeName , BusOperator busOperator){
-		List<Feedback> f1 = feedbackRepository.findByRouteName(routeName);
+		List<Feedback> f1 = feedbackRepository.findByRouteNameAndBusOperatorBusOperatorUsername(routeName,busOperator.getBusOperatorUsername());
 		return f1;
 	}
 	
 	public List<Feedback> viewAllFeedbacks(BusOperator busOperator){
-		List<Feedback> feedback = feedbackRepository.findByBusOperatorBusOperatorUsername(busOperator.getBusOperatorusername());
+		List<Feedback> feedback = feedbackRepository.findByBusOperatorBusOperatorUsername(busOperator.getBusOperatorUsername());
 		return feedback;
 	}
 	
