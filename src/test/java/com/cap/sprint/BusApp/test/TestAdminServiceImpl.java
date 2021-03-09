@@ -14,8 +14,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.cap.sprint.BusApp.entities.Booking;
 import com.cap.sprint.BusApp.entities.Bus;
 import com.cap.sprint.BusApp.entities.BusRoute;
-import com.cap.sprint.BusApp.repos.BookingRepository;
-import com.cap.sprint.BusApp.repos.BusRepository;
+import com.cap.sprint.BusApp.repos.IBookingRepository;
+import com.cap.sprint.BusApp.repos.IBusRepository;
 import com.cap.sprint.BusApp.services.AdminServiceImpl;
 
 @SpringBootTest
@@ -25,10 +25,10 @@ class TestAdminServiceImpl {
 	AdminServiceImpl adminServiceImpl;
 	
 	@Autowired
-	BookingRepository bookingRepository;
+	IBookingRepository bookingRepository;
 	
 	@Autowired
-	BusRepository busRepository;
+	IBusRepository busRepository;
 	
 //	@Test
 	void testGetAllBusOperator() {
@@ -48,7 +48,7 @@ class TestAdminServiceImpl {
 //	@Test
 	@Transactional
 	void testUpdateBusTime() {
-		Bus bus = new Bus("ABC123",2,200,null,null);
+		Bus bus = new Bus("ABC123",2,200,null);
 		LocalTime startTime = LocalTime.parse("08:00");
 		LocalTime endTime = LocalTime.parse("13:00");
 		adminServiceImpl.updateBusTime(bus, startTime, endTime);
@@ -62,7 +62,7 @@ class TestAdminServiceImpl {
 //	@Test
 	@Transactional
 	void testUpdateBusRoute() {
-		Bus bus = new Bus("ABC123",2,200,null,null);
+		Bus bus = new Bus("ABC123",2,200,null);
 		BusRoute busRoute = new BusRoute("B to A","B","A",null);
 		adminServiceImpl.updateBusRoute(bus, busRoute);
 		Booking b = bookingRepository.findByBusBusNumber(bus.getBusNumber());
@@ -74,7 +74,7 @@ class TestAdminServiceImpl {
 //	@Test
 	@Transactional
 	void testUpdateBusFare() {
-		Bus bus = new Bus("ABC123",2,200,null,null);
+		Bus bus = new Bus("ABC123",2,200,null);
 		adminServiceImpl.updateBusFare(bus, 500);
 		Bus b2 = busRepository.findByBusNumber(bus.getBusNumber());
 		System.out.println(bus);
@@ -84,7 +84,7 @@ class TestAdminServiceImpl {
 
 // 	@Test
 	void testDeleteBus() {
-		Bus bus = new Bus("ABC123",2,200,null,null);
+		Bus bus = new Bus("ABC123",2,200,null);
 		adminServiceImpl.deleteBus(bus);
 	}
 

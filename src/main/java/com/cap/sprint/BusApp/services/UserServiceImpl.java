@@ -9,14 +9,15 @@ import org.springframework.stereotype.Service;
 import com.cap.sprint.BusApp.entities.User;
 import com.cap.sprint.BusApp.exception.UserAlreadyExistException;
 import com.cap.sprint.BusApp.exception.UserNotFoundException;
-import com.cap.sprint.BusApp.repos.UserRepository;
+import com.cap.sprint.BusApp.repos.IUserRepository;
 
 @Service
-public class UserService {
-	
+public class UserServiceImpl implements IUserService {
+
 	@Autowired
-	UserRepository userRepository;
+	IUserRepository userRepository;
 	
+	@Override
 	public void addUser(User user) {
 		Optional<User> u = userRepository.findByUsername(user.getUsername());
 		if(u.isPresent()) {
@@ -26,6 +27,7 @@ public class UserService {
 		}
 	}
 	
+	@Override
 	public void deleteUser(String username) {
 		User newUser = null;
 		Optional<User> u =userRepository.findByUsername(username);
@@ -37,6 +39,7 @@ public class UserService {
 		}
 	}
 	
+	@Override
 	public void updateUser(String username, String password) {
 		User newUser = null;
 		Optional<User> u =userRepository.findByUsername(username);
@@ -48,6 +51,7 @@ public class UserService {
 		}
 	}
 	
+	@Override
 	public List<User> getAllUsers() {
 		return userRepository.findAll();
 	}

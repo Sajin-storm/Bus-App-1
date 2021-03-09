@@ -1,13 +1,16 @@
 package com.cap.sprint.BusApp.entities;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -23,17 +26,25 @@ public class BusOperator {
 	@OneToOne
 	Feedback feedback; 
 	
+//	@OneToMany(mappedBy = "busRoute", cascade = {CascadeType.ALL})
+//	List<Bus> bus;
+	
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	Bus bus;
+//	
+//	@ManyToOne(cascade = CascadeType.ALL)
+//	@JoinColumn(name = "busRoute")
+//	BusRoute busRoute;
+//	@OneToMany(mappedBy = "busOperator", cascade = {CascadeType.ALL})
+//	List<BusRoute> busRoute;
 	
 	public BusOperator() {
 		super();
 	}
 
-	public BusOperator(int id, String busOperatorUsername, String password, ArrayList<Integer> caseNumber,
+	public BusOperator(String busOperatorUsername, String password, ArrayList<Integer> caseNumber,
 			Feedback feedback, Bus bus) {
 		super();
-		this.id = id;
 		this.busOperatorUsername = busOperatorUsername;
 		this.password = password;
 		this.caseNumber = caseNumber;

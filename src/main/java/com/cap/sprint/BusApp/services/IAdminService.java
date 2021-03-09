@@ -9,7 +9,7 @@ import com.cap.sprint.BusApp.entities.BusOperator;
 import com.cap.sprint.BusApp.entities.BusOperatorRequest;
 import com.cap.sprint.BusApp.entities.BusRoute;
 
-public interface AdminService {
+public interface IAdminService {
 	
 	public List<BusOperator> getAllBusOperator();
 	
@@ -19,7 +19,7 @@ public interface AdminService {
 	
 	public void updateBusTime(Bus bus,LocalTime startTime, LocalTime endTime);
 	
-	public void updateBusRoute(Bus bus, BusRoute route);
+	public void updateBusRoute(Bus bus, String route);
 	
 	public void updateBusFare(Bus bus, int fare);
 	

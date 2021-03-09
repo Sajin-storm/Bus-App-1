@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -21,6 +23,13 @@ public class BusRoute {
 	
 	@OneToMany(mappedBy = "busRoute", cascade = {CascadeType.ALL})
 	List<Bus> bus;
+	
+//	@OneToMany(mappedBy = "busRoute", cascade = {CascadeType.ALL})
+//	List<BusOperator> BusOperator;
+//	@ManyToOne(cascade = CascadeType.ALL)
+//	@JoinColumn(name = "bus_operator")
+//	BusOperator busOperator;
+
 	
 	public BusRoute() {
 		super();

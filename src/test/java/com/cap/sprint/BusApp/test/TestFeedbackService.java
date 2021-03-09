@@ -8,13 +8,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.cap.sprint.BusApp.entities.BusOperator;
 import com.cap.sprint.BusApp.entities.Feedback;
-import com.cap.sprint.BusApp.services.FeedbackService;
+import com.cap.sprint.BusApp.services.IFeedbackService;
 
 @SpringBootTest
 class TestFeedbackService {
 	
 	@Autowired
-	FeedbackService feedbackService;
+	IFeedbackService feedbackService;
 	
 	@Test
 	void testAddFeedback() {

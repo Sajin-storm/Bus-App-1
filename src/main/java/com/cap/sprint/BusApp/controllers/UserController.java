@@ -17,14 +17,14 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cap.sprint.BusApp.entities.User;
-import com.cap.sprint.BusApp.services.UserService;
+import com.cap.sprint.BusApp.services.IUserService;
 
 @RestController
 @RequestMapping(path = "/users")
 public class UserController {
 	
 	@Autowired
-	UserService userService;
+	IUserService userService;
 	
 	@PostMapping("/")
 	@ResponseStatus(HttpStatus.CREATED)
