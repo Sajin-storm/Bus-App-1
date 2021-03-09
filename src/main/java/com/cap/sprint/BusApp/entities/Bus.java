@@ -27,30 +27,27 @@ public class Bus {
 	int fare;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "bus_operator")
 	BusOperator busOperator;
 	
-	@OneToOne
-	BusOperatorRequest busOperatorRequest;
+//	@OneToOne
+//	BusOperatorRequest busOperatorRequest;
 	
 	@ManyToOne
-	@JoinColumn(name = "bus_Route")
+	@JoinColumn(name = "busRoute")
 	BusRoute busRoute;
-	
-	@OneToMany(cascade = CascadeType.REMOVE,orphanRemoval = true)
-	List<Booking> booking;
-	
+
 	public Bus() {
 		super();
 	}
 
-	public Bus(String busNumber, int totalSeats, int fare, BusOperator busOperator,
-			BusOperatorRequest busOperatorRequest) {
+	public Bus(String busNumber, int totalSeats, int fare, BusOperator busOperator) {
 		super();
 		this.busNumber = busNumber;
 		this.totalSeats = totalSeats;
 		this.fare = fare;
-		this.busOperator = busOperator;
-		this.busOperatorRequest = busOperatorRequest;
+//		this.busOperator = busOperator;
+		//this.busOperatorRequest = busOperatorRequest;
 	}
 
 	public int getId() {
@@ -85,25 +82,29 @@ public class Bus {
 		this.fare = fare;
 	}
 
-	public BusOperator getBusOperator() {
-		return busOperator;
+	public BusRoute getBusRoute() {
+		return busRoute;
 	}
 
-	public void setBusOperator(BusOperator busOperator) {
-		this.busOperator = busOperator;
+	public void setBusRoute(BusRoute busRoute) {
+		this.busRoute = busRoute;
 	}
+	
+//
+//	public BusOperator getBusOperator() {
+//		return busOperator;
+//	}
+//
+//	public void setBusOperator(BusOperator busOperator) {
+//		this.busOperator = busOperator;
+//	}
 
-	public BusOperatorRequest getBusOperatorRequest() {
-		return busOperatorRequest;
-	}
+//	public BusOperatorRequest getBusOperatorRequest() {
+//		return busOperatorRequest;
+//	}
+//
+//	public void setBusOperatorRequest(BusOperatorRequest busOperatorRequest) {
+//		this.busOperatorRequest = busOperatorRequest;
+//	}
 
-	public void setBusOperatorRequest(BusOperatorRequest busOperatorRequest) {
-		this.busOperatorRequest = busOperatorRequest;
-	}
-
-	@Override
-	public String toString() {
-		return "Bus [id=" + id + ", busNumber=" + busNumber + ", totalSeats=" + totalSeats + ", fare=" + fare
-				+ ", busOperator=" + busOperator + ", busOperatorRequest=" + busOperatorRequest + "]";
-	}
 }

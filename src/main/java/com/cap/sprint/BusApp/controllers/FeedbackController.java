@@ -14,14 +14,18 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cap.sprint.BusApp.entities.Feedback;
-import com.cap.sprint.BusApp.services.FeedbackServiceImpl;
+
+import com.cap.sprint.BusApp.services.IFeedbackService;
+
 
 @RestController
 @RequestMapping(path = "/feedbacks")
 public class FeedbackController {
 	
 	@Autowired
-	FeedbackServiceImpl feedbackService;
+
+	IFeedbackService feedbackService;
+
 	
 	@PostMapping("/")
 	@ResponseStatus(HttpStatus.CREATED)

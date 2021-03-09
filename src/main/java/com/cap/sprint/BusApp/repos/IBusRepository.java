@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.cap.sprint.BusApp.entities.Bus;
 
 @Repository
-public interface BusRepository extends JpaRepository<Bus,Integer>{
+public interface IBusRepository extends JpaRepository<Bus,Integer>{
 
 	Bus findByBusNumber(String busNumber);
 

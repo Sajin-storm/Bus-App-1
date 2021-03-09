@@ -3,13 +3,9 @@ package com.cap.sprint.BusApp.services;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
-import java.util.Optional;
-
-import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
 
 import com.cap.sprint.BusApp.entities.Booking;
 import com.cap.sprint.BusApp.entities.Bus;
@@ -17,29 +13,33 @@ import com.cap.sprint.BusApp.entities.BusOperator;
 import com.cap.sprint.BusApp.entities.BusOperatorRequest;
 import com.cap.sprint.BusApp.entities.BusRoute;
 import com.cap.sprint.BusApp.exception.BusDoesnotExistException;
-import com.cap.sprint.BusApp.repos.AdminRepository;
-import com.cap.sprint.BusApp.repos.BookingRepository;
-import com.cap.sprint.BusApp.repos.BusOperatorRepository;
-import com.cap.sprint.BusApp.repos.BusOperatorRequestRepository;
-import com.cap.sprint.BusApp.repos.BusRepository;
+import com.cap.sprint.BusApp.repos.IAdminRepository;
+import com.cap.sprint.BusApp.repos.IBookingRepository;
+import com.cap.sprint.BusApp.repos.IBusOperatorRepository;
+import com.cap.sprint.BusApp.repos.IBusOperatorRequestRepository;
+import com.cap.sprint.BusApp.repos.IBusRepository;
+import com.cap.sprint.BusApp.repos.IBusRouteRepository;
 
 @Service
-public class AdminServiceImpl implements AdminService{
+public class AdminServiceImpl implements IAdminService{
 	
 	@Autowired
-	AdminRepository adminRepository;
+	IAdminRepository adminRepository;
 	
 	@Autowired
-	BusOperatorRepository busOperatorRepository;
+	IBusOperatorRepository busOperatorRepository;
 	
 	@Autowired
-	BookingRepository bookingRepository;
+	IBookingRepository bookingRepository;
 	
 	@Autowired
-	BusRepository busRepository;
+	IBusRepository busRepository;
 	
 	@Autowired
-	BusOperatorRequestRepository busOperatorRequestRepository;
+	IBusOperatorRequestRepository busOperatorRequestRepository;
+	
+	@Autowired
+	IBusRouteRepository busRouteRepository;
 	
 	@Override
 	public List<BusOperator> getAllBusOperator(){
@@ -66,9 +66,9 @@ public class AdminServiceImpl implements AdminService{
 	}
 	
 	@Override
-	public void updateBusRoute(Bus bus, BusRoute route) {
-		Booking b = bookingRepository.findByBusBusNumber(bus.getBusNumber());
-		b.setBusRoute(route);
+	public void updateBusRoute(Bus bus, String route) {
+		BusRoute b = busRouteRepository.findByBusBusNumber(bus.getBusNumber());
+		b.setRouteName(route);
 	}
 	
 	@Override

@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Pessenger {
+public class Passenger {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,11 +23,11 @@ public class Pessenger {
 	@ManyToOne
 	Booking booking;  //many passengers for in 1 booking
 	
-	public Pessenger() {
+	public Passenger() {
 		super();
 	}
 
-	public Pessenger(String username, String firstName, String lastName, long phoneNumber, String email,
+	public Passenger(String username, String firstName, String lastName, long phoneNumber, String email,
 			long identityDocNumber, String identityDocName, Booking booking) {
 		super();
 		this.username = username;

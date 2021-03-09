@@ -9,6 +9,7 @@ import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -29,7 +30,10 @@ public class Booking {
 	LocalTime journeyEndTime;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-	User user; 
+
+	@JoinColumn(name = "user_id")
+	User user; //many bookings can be done by 1 user  or 1 user can book many bookings
+
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	BusRoute busRoute;

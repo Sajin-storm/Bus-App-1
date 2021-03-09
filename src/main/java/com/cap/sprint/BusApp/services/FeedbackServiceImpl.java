@@ -10,22 +10,24 @@ import com.cap.sprint.BusApp.entities.BusOperator;
 import com.cap.sprint.BusApp.entities.Feedback;
 import com.cap.sprint.BusApp.entities.User;
 import com.cap.sprint.BusApp.exception.UserNotFoundException;
-import com.cap.sprint.BusApp.repos.BusOperatorRepository;
-import com.cap.sprint.BusApp.repos.FeedbackRepository;
-import com.cap.sprint.BusApp.repos.UserRepository;
+import com.cap.sprint.BusApp.repos.IBusOperatorRepository;
+import com.cap.sprint.BusApp.repos.IFeedbackRepository;
+import com.cap.sprint.BusApp.repos.IUserRepository;
 
 @Service
-public class FeedbackServiceImpl {
+
+public class FeedbackServiceImpl implements IFeedbackService {
 	
 	@Autowired
-	FeedbackRepository feedbackRepository;
+	IFeedbackRepository feedbackRepository;
 	
 	@Autowired
-	UserRepository userRepository;
+	IUserRepository userRepository;
 	
 	@Autowired
-	BusOperatorRepository busOperatorRepository;
+	IBusOperatorRepository busOperatorRepository;
 	
+	@Override
 	public Feedback addFeedback(Feedback feedback) {
 		Feedback f =null;
 		Optional<User> user = userRepository.findByUsername(feedback.getUsername());
@@ -38,24 +40,23 @@ public class FeedbackServiceImpl {
 		return f;
 	}
 	
-	
+	@Override
 	public List<Feedback> viewAllFeedbacks(String routeName , BusOperator busOperator){
-		List<Feedback> f1 = feedbackRepository.findByRouteNameAndBusOperatorBusOperatorUsername(routeName,busOperator.getBusOperatorUsername());
+
+		List<Feedback> f1 = feedbackRepository.findByRouteNameAndBusOperatorBusOperatorUsername(routeName, busOperator.getBusOperatorUsername());
 		return f1;
 	}
 	
+	@Override
 	public List<Feedback> viewAllFeedbacks(BusOperator busOperator){
 		List<Feedback> feedback = feedbackRepository.findByBusOperatorBusOperatorUsername(busOperator.getBusOperatorUsername());
 		return feedback;
 	}
 	
-	
-	
-	
-	
+	@Override
 	public List<Feedback> getAllFeedbacks(){
 		List<Feedback> feedback = feedbackRepository.findAll();
 		return feedback;
 	}
-	
+
 }

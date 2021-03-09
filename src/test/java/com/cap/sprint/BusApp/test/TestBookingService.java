@@ -7,13 +7,16 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.cap.sprint.BusApp.entities.Booking;
 import com.cap.sprint.BusApp.entities.User;
-import com.cap.sprint.BusApp.services.BookingServiceImpl;
+
+import com.cap.sprint.BusApp.services.IBookingService;
+
 
 @SpringBootTest
 class TestBookingService {
 	
-	@Autowired
-	BookingServiceImpl bookingService;
+
+	IBookingService bookingService;
+
 	
 //	@Test
 	void testAddBooking() {

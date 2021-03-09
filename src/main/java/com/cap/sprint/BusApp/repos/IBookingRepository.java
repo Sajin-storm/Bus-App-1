@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.cap.sprint.BusApp.entities.Booking;
 
 @Repository
-public interface BookingRepository extends JpaRepository<Booking,Integer>{
+public interface IBookingRepository extends JpaRepository<Booking,Integer>{
 
 	public Optional<Booking> findById(int id);
 	public Booking findByUsername(String username);

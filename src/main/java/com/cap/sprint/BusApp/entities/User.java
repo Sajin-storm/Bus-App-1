@@ -1,9 +1,13 @@
 package com.cap.sprint.BusApp.entities;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -15,7 +19,6 @@ public class User {
 	int id;
 	String username;
 	String password;
-	
 	
 	public User() {
 		super();
