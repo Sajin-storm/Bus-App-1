@@ -11,21 +11,21 @@ import com.cap.sprint.BusApp.entities.Bus;
 import com.cap.sprint.BusApp.entities.BusOperator;
 import com.cap.sprint.BusApp.exception.BusAlreadyExistException;
 import com.cap.sprint.BusApp.exception.BusOperatorAlreadyExistsException;
-import com.cap.sprint.BusApp.repos.BookingRepository;
-import com.cap.sprint.BusApp.repos.BusOperatorRepository;
-import com.cap.sprint.BusApp.repos.BusRepository;
+import com.cap.sprint.BusApp.repos.IBookingRepository;
+import com.cap.sprint.BusApp.repos.IBusOperatorRepository;
+import com.cap.sprint.BusApp.repos.IBusRepository;
 
 @Service
-public class BusOperatorServiceImpl implements BusOperatorService{
+public class BusOperatorServiceImpl implements IBusOperatorService{
 	
 	@Autowired
-	BusOperatorRepository busOperatorRepository;
+	IBusOperatorRepository busOperatorRepository;
 	
 	@Autowired
-	BusRepository busRepository;
+	IBusRepository busRepository;
 	
 	@Autowired
-	BookingRepository bookingRepository;
+	IBookingRepository bookingRepository;
 	
 	//Method to add a Bus into Bus Repository
 	@Override
@@ -63,11 +63,11 @@ public class BusOperatorServiceImpl implements BusOperatorService{
 	
 	//Method to retrieve the monthly revenue generated from a particular Bus Route
 	@Override
-	public int getMonthlyRevenueByBusRoute(String routeName, String month){
+	public int getMonthlyRevenueByBusRoute(String routeName, String month, String year){
 		int monthlyRevenue = 0;
 		List<Booking> booking = bookingRepository.findByBusRouteRouteName(routeName); //Creating a list of bookings
 		for(int i = 0; i < booking.size(); i++) {
-			if(booking.get(i).getDate().getMonthValue() == Integer.parseInt(month)) //Finding particular month
+			if(booking.get(i).getDate().getMonthValue() == Integer.parseInt(month) && booking.get(i).getDate().getYear() == Integer.parseInt(year)) //Finding particular month
 				monthlyRevenue = monthlyRevenue + booking.get(i).getAmountPaid(); //Fetching the amount paid column from the list to add to revenue
 		}
 		return monthlyRevenue;

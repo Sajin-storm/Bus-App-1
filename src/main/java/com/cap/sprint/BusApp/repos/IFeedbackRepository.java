@@ -10,7 +10,7 @@ import com.cap.sprint.BusApp.entities.Feedback;
 import com.cap.sprint.BusApp.entities.User;
 
 @Repository
-public interface FeedbackRepository extends JpaRepository<Feedback,Integer>{
+public interface IFeedbackRepository extends JpaRepository<Feedback,Integer>{
 
 	public Optional<Feedback> findByUser(User user);
 
@@ -21,5 +21,8 @@ public interface FeedbackRepository extends JpaRepository<Feedback,Integer>{
 	public List<Feedback> findByUserUsername(String username);
 
 	public List<Feedback> findByBusOperatorBusOperatorUsername(String busOperatorusername);
+
+	public List<Feedback> findByRouteNameAndBusOperatorBusOperatorUsername(String routeName,
+			String busOperatorUsername);
 
 }

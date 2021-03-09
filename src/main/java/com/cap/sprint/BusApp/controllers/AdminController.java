@@ -21,14 +21,14 @@ import com.cap.sprint.BusApp.entities.Bus;
 import com.cap.sprint.BusApp.entities.BusOperator;
 import com.cap.sprint.BusApp.entities.BusOperatorRequest;
 import com.cap.sprint.BusApp.entities.BusRoute;
-import com.cap.sprint.BusApp.services.AdminService;
+import com.cap.sprint.BusApp.services.IAdminService;
 
 @RestController
 @RequestMapping("/admin")
 public class AdminController {
 	
 	@Autowired
-	AdminService adminService;
+	IAdminService adminService;
 	
 	@GetMapping("/getAll")
 	@ResponseStatus(HttpStatus.FOUND)
@@ -48,17 +48,19 @@ public class AdminController {
 		return adminService.getAllBusOperatorsRequest();
 	}
 	
-	@PutMapping("/updateTime/{startTime}:{endTime}")
+	@PutMapping("/updateTime/{startTime}/{endTime}")
 	@Transactional
 	@ResponseStatus(HttpStatus.CREATED)
-	public void updateBusTime(@RequestBody Bus bus,@PathVariable("startTime")LocalTime startTime,@PathVariable("endTime") LocalTime endTime) {
-		adminService.updateBusTime(bus, startTime, endTime);
+	public void updateBusTime(@RequestBody Bus bus,@PathVariable("startTime")String startTime,@PathVariable("endTime") String endTime) {
+		LocalTime startTime1 = LocalTime.parse(startTime);
+		LocalTime endTime1 = LocalTime.parse(endTime);
+		adminService.updateBusTime(bus, startTime1, endTime1);
 	}
 	
 	@PutMapping("/updateBusRoute/{route}")
 	@Transactional
 	@ResponseStatus(HttpStatus.CREATED)
-	public void updateBusRoute(@RequestBody Bus bus,@PathVariable("route") BusRoute route) {
+	public void updateBusRoute(@RequestBody Bus bus,@PathVariable("route") String route) {
 		adminService.updateBusRoute(bus, route);
 	}
 	

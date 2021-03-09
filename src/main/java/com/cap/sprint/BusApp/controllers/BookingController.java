@@ -21,14 +21,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cap.sprint.BusApp.entities.Booking;
 import com.cap.sprint.BusApp.entities.Feedback;
 import com.cap.sprint.BusApp.entities.User;
-import com.cap.sprint.BusApp.services.BookingService;
+import com.cap.sprint.BusApp.services.IBookingService;
 
 @RestController
 @RequestMapping(path = "/bookings")
 public class BookingController {
 	
 	@Autowired
-	BookingService bookingService;
+	IBookingService bookingService;
 	
 	@PostMapping("/")
 	@ResponseStatus(HttpStatus.CREATED)

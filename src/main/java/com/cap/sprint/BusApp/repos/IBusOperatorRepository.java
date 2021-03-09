@@ -11,7 +11,7 @@ import com.cap.sprint.BusApp.entities.BusOperatorRequest;
 
 
 @Repository
-public interface BusOperatorRepository extends JpaRepository<BusOperator,Integer>{
+public interface IBusOperatorRepository extends JpaRepository<BusOperator,Integer>{
 
 
 	public List<BusOperator> findByBusBusRouteRouteName(String route);
