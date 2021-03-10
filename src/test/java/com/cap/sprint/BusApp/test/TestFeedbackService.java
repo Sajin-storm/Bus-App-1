@@ -1,14 +1,12 @@
 package com.cap.sprint.BusApp.test;
 
-import static org.junit.jupiter.api.Assertions.fail;
-
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.cap.sprint.BusApp.entities.BusOperator;
 import com.cap.sprint.BusApp.entities.Feedback;
-import com.cap.sprint.BusApp.services.IFeedbackService;
+import com.cap.sprint.BusApp.serviceinterfaces.IFeedbackService;
 
 @SpringBootTest
 class TestFeedbackService {

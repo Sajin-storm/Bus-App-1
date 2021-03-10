@@ -1,4 +1,4 @@
-package com.cap.sprint.BusApp.services;
+package com.cap.sprint.BusApp.serviceinterfaces;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -7,9 +7,10 @@ import java.util.List;
 import com.cap.sprint.BusApp.entities.Bus;
 import com.cap.sprint.BusApp.entities.BusOperator;
 import com.cap.sprint.BusApp.entities.BusOperatorRequest;
-import com.cap.sprint.BusApp.entities.BusRoute;
 
 public interface IAdminService {
+	
+	//Service methods to be implemented by Service Implementation Class
 	
 	public List<BusOperator> getAllBusOperator();
 	

@@ -10,13 +10,17 @@ import com.cap.sprint.BusApp.entities.User;
 import com.cap.sprint.BusApp.exception.UserAlreadyExistException;
 import com.cap.sprint.BusApp.exception.UserNotFoundException;
 import com.cap.sprint.BusApp.repos.IUserRepository;
+import com.cap.sprint.BusApp.serviceinterfaces.IUserService;
 
 @Service
 public class UserServiceImpl implements IUserService {
 
+	//Dependency injections of required repositories
+	
 	@Autowired
 	IUserRepository userRepository;
 	
+	//Method to add a user
 	@Override
 	public void addUser(User user) {
 		Optional<User> u = userRepository.findByUsername(user.getUsername());
@@ -27,6 +31,7 @@ public class UserServiceImpl implements IUserService {
 		}
 	}
 	
+	//Method to delete a user
 	@Override
 	public void deleteUser(String username) {
 		User newUser = null;
@@ -39,6 +44,7 @@ public class UserServiceImpl implements IUserService {
 		}
 	}
 	
+	//Method to update a users password
 	@Override
 	public void updateUser(String username, String password) {
 		User newUser = null;

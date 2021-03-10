@@ -1,4 +1,4 @@
-package com.cap.sprint.BusApp.services;
+package com.cap.sprint.BusApp.serviceinterfaces;
 
 import java.time.LocalDate;
 
@@ -6,6 +6,8 @@ import com.cap.sprint.BusApp.entities.Bus;
 import com.cap.sprint.BusApp.entities.BusOperator;
 
 public interface IBusOperatorService {
+	
+	//Service methods to be implemented by Service Implementation Class
 	
 	public void addBus(Bus b);
 

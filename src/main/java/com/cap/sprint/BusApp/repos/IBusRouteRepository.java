@@ -6,6 +6,8 @@ import com.cap.sprint.BusApp.entities.BusRoute;
 
 public interface IBusRouteRepository extends JpaRepository<BusRoute, Integer>{
 
+	//Repository methods to be used for fetching data
+	
 	BusRoute findByBusBusNumber(String busNumber);
 
 }

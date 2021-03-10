@@ -1,6 +1,5 @@
 package com.cap.sprint.BusApp.controllers;
 
-
 import java.time.LocalDate;
 import java.util.List;
 
@@ -21,86 +20,82 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cap.sprint.BusApp.entities.Booking;
 import com.cap.sprint.BusApp.entities.Feedback;
 import com.cap.sprint.BusApp.entities.User;
-import com.cap.sprint.BusApp.services.IBookingService;
+import com.cap.sprint.BusApp.serviceinterfaces.IBookingService;
 
 @RestController
-@RequestMapping(path = "/bookings")
+@RequestMapping(path = "/bookings") //URL specification before every method
 public class BookingController {
 	
+	//Dependency Injection
 	@Autowired
 	IBookingService bookingService;
 	
+	//REST Method to add a booking
 	@PostMapping("/")
 	@ResponseStatus(HttpStatus.CREATED)
 	public long addBooking(@RequestBody Booking booking) {
 		return bookingService.addBooking(booking);
 	}
 	
+	//REST Method to update a bookings date field
 	@PutMapping("/update/{bookingId}")
+	@ResponseStatus(HttpStatus.OK)
 	@Transactional
 	public boolean updateBookingDate (@PathVariable("bookingId") long bookingId) {
 		return bookingService.updateBookingDate(bookingId);
 	}
 	
+	//REST Method to delete a booking
 	@DeleteMapping("/{id}")
-	@ResponseStatus(HttpStatus.CREATED)
+	@ResponseStatus(HttpStatus.OK)
 	public boolean deleteBooking(@PathVariable("id") long id) {
 		return bookingService.deleteBooking(id);
 	}
 	
+	//REST Method to get the booking details from a specific booking ID
 	@GetMapping("/{bookingId}")
 	@ResponseStatus(HttpStatus.FOUND)
 	public Booking getBookingDetailsById(@PathVariable("bookingId") long bookingId) {
 		return bookingService.getBookingDetailsById(bookingId);
 	}
 	
+	//REST Method to get the booking details from a specific date
 	@GetMapping("/date/{date}")
+	@ResponseStatus(HttpStatus.FOUND)
 	public List<Booking> getAllBookingByDate(@PathVariable("date") String date){
 		LocalDate d = LocalDate.parse(date); 
 		return bookingService.getAllBookingByDate(d);
 	}
 	
+	//REST Method to find all bookings
 	@GetMapping("/")
 	@ResponseStatus(HttpStatus.FOUND)
 	public List<Booking> findAllBookings (){
 		return bookingService.findAllBookings();
 	}
 	
-//	@GetMapping("/busNumber/{busNumber}")
-//	@ResponseStatus(HttpStatus.FOUND)
-//	public List<Booking> getAllBookingByBusNumber(@PathVariable("busNumber") String busNumber){
-//		return bookingService.getAllBookingByBusNumber(busNumber);
-//	}
-//	
-//	@GetMapping("/source/{source}")
-//	@ResponseStatus(HttpStatus.FOUND)
-//	public List<Booking> getAllBookingBySource(@PathVariable("source") String source){
-//		return bookingService.getAllBookingBySource(source);
-//	}
-//	
-//	@GetMapping("/destination/{destination}")
-//	@ResponseStatus(HttpStatus.FOUND)
-//	public List<Booking> getAllBookingByDestination(@PathVariable("destination") String destination){
-//		return bookingService.getAllBookingByDestination(destination);
-//	}
-	
+	//REST Method to get the bookings from a specific bus route
 	@GetMapping("/routeName/{routeName}")
+	@ResponseStatus(HttpStatus.FOUND)
 	public List<Booking> getAllBookingByBusRoute(@PathVariable("routeName") String routeName){
 		return bookingService.getAllBookingByBusRoute(routeName);
 	}
 	
+	//REST Method to add a feedback via booking ID
 	@PostMapping("/feedback/{bookingId}")
 	@ResponseStatus(HttpStatus.CREATED)
 	public void addFeedback(@RequestBody User user,@PathVariable("bookingId") long bookingId) {
 		bookingService.addFeedback(user, bookingId);
 	}
 	
+	//REST Method to get feedbacks via specific bus route
 	@GetMapping("/feedback/routeName/{routeName}")
-	@ResponseStatus(HttpStatus.CREATED)
+	@ResponseStatus(HttpStatus.FOUND)
 	public List<Feedback> getFeedbackByBusRoute(@PathVariable("routeName") String routeName){
 		return bookingService.getFeedbackByBusRoute(routeName);
 	}
 	
+	//REST Method to add a feedback with comment
 	@PostMapping("/feedback/add/{username}:{bookingId}")
 	@ResponseStatus(HttpStatus.CREATED)
 	public void addFeedback(@PathVariable("username") String username, @PathVariable("bookingId") long bookingId, @RequestBody String comment) {

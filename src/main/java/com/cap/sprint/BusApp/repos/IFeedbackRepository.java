@@ -12,6 +12,8 @@ import com.cap.sprint.BusApp.entities.User;
 @Repository
 public interface IFeedbackRepository extends JpaRepository<Feedback,Integer>{
 
+	//Repository methods to be used for fetching data
+	
 	public Optional<Feedback> findByUser(User user);
 
 	public List<Feedback> findByRouteName(String routeName);
