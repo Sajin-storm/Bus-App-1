@@ -14,9 +14,12 @@ import com.cap.sprint.BusApp.exception.BusOperatorAlreadyExistsException;
 import com.cap.sprint.BusApp.repos.IBookingRepository;
 import com.cap.sprint.BusApp.repos.IBusOperatorRepository;
 import com.cap.sprint.BusApp.repos.IBusRepository;
+import com.cap.sprint.BusApp.serviceinterfaces.IBusOperatorService;
 
 @Service
 public class BusOperatorServiceImpl implements IBusOperatorService{
+	
+	//Dependency injections of required repositories
 	
 	@Autowired
 	IBusOperatorRepository busOperatorRepository;

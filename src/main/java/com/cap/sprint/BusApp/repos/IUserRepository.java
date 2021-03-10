@@ -10,6 +10,8 @@ import com.cap.sprint.BusApp.entities.User;
 @Repository
 public interface IUserRepository extends JpaRepository<User,Integer>{
 
+	//Repository methods to be used for fetching data
+	
 	public Optional<User> findByUsername(String username);
 
 

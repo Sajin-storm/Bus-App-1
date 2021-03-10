@@ -17,10 +17,13 @@ import com.cap.sprint.BusApp.repos.IBookingRepository;
 import com.cap.sprint.BusApp.repos.IBusOperatorRepository;
 import com.cap.sprint.BusApp.repos.IFeedbackRepository;
 import com.cap.sprint.BusApp.repos.IUserRepository;
+import com.cap.sprint.BusApp.serviceinterfaces.IBookingService;
 
 @Service
 
 public class BookingServiceImpl implements IBookingService {
+	
+	//Dependency injections of required repositories
 	
 	@Autowired
 	IBookingRepository bookingRepository;
@@ -48,6 +51,7 @@ public class BookingServiceImpl implements IBookingService {
 	}
 
 	
+	//Method to update a booking date by its ID
 	@Override
 	public boolean updateBookingDate(long bookingId) {
 		boolean result = false;
@@ -111,16 +115,6 @@ public class BookingServiceImpl implements IBookingService {
 		return feedback;
 	}
 	
-	//own method to find all booking
-	@Override
-	public List<Booking> findAllBookings(){
-		List<Booking> booking = bookingRepository.findAll();
-		if (booking.isEmpty()) {
-			throw new BookingNotFoundException("bookings does not exist!!!");
-		}
-		return booking;
-	}
-	
 	//addFeedback(User,Long):void
 	@Override
 	public void addFeedback(User user,long bookingId) {
@@ -180,5 +174,15 @@ public class BookingServiceImpl implements IBookingService {
 			f1.setUser(u);
 			feedbackRepository.save(f1);
 		}
+	}
+	
+	//own method to find all booking
+	@Override
+	public List<Booking> findAllBookings(){
+		List<Booking> booking = bookingRepository.findAll();
+		if (booking.isEmpty()) {
+			throw new BookingNotFoundException("bookings does not exist!!!");
+		}
+		return booking;
 	}
 }

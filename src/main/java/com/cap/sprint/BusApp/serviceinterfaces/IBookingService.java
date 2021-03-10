@@ -1,4 +1,4 @@
-package com.cap.sprint.BusApp.services;
+package com.cap.sprint.BusApp.serviceinterfaces;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -8,9 +8,9 @@ import com.cap.sprint.BusApp.entities.Feedback;
 import com.cap.sprint.BusApp.entities.User;
 
 
-
-
 public interface IBookingService {
+	
+	//Service methods to be implemented by Service Implementation Class
 	
 	public long addBooking(Booking booking);
 	
@@ -35,9 +35,5 @@ public interface IBookingService {
 	public void addFeedback(String username, long bookingid, String comment);
 
 	
+
 }
-
-
-
-
-

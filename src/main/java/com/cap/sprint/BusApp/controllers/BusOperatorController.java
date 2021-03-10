@@ -16,32 +16,33 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cap.sprint.BusApp.entities.Bus;
 import com.cap.sprint.BusApp.entities.BusOperator;
-import com.cap.sprint.BusApp.services.IBusOperatorService;
+import com.cap.sprint.BusApp.serviceinterfaces.IBusOperatorService;
 
 @RestController
-@RequestMapping(path = "/BusOperator")
+@RequestMapping(path = "/busoperator") //URL specification before every method
 public class BusOperatorController {
 	
+	//Dependency Injection
 	@Autowired
 	IBusOperatorService busOperatorService;
 	
 	
-	//Adding a bus using service with Http Status
+	//REST Method to add a bus
 	@PostMapping("/")
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public void addBus(@RequestBody Bus b) {
 		busOperatorService.addBus(b);
 	}
 	
-	//Adding a bus operator using service with Http Status
-	@PostMapping("/BusOp/")
+	//REST Method to add a bus operator
+	@PostMapping("/busop/")
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public void addBusOperator(@RequestBody BusOperator busOp) {
 		busOperatorService.addBusOperator(busOp);
 	}
 	
-	//Getting revenue by bus route using service with Http Status
-	@GetMapping("/Revenue/{routeName}")
+	//REST Method to find revenue generated from a specific bus route
+	@GetMapping("/revenue/{routeName}")
 	public ResponseEntity<Integer> getRevenueByBusRoute(@PathVariable String routeName) {
 		ResponseEntity<Integer> re = null;
 		int revenue = 0;
@@ -56,8 +57,8 @@ public class BusOperatorController {
 		return re;
 	}
 		
-	//Getting revenue by bus route and date using service with Http Status
-	@GetMapping("/Revenue/{routeName}/{date}")
+	//REST Method to find revenue generated from a specific bus route and date
+	@GetMapping("/revenue/{routeName}/{date}")
 	public ResponseEntity<Integer> getRevenueByBusRouteAndDate(@PathVariable String routeName, @PathVariable String date) {
 		ResponseEntity<Integer> re = null;
 		int revenue = 0;
@@ -73,8 +74,8 @@ public class BusOperatorController {
 		return re;
 	}
 	
-	//Getting monthly revenue by bus route using service with Http Status
-	@GetMapping("/MonthlyRevenue/{routeName}/{month}/{year}")
+	//REST Method to find monthly revenue generated from a specific bus route
+	@GetMapping("/monthlyrevenue/{routeName}/{month}/{year}")
 	public ResponseEntity<Integer> getMonthlyRevenueByBusRoute(@PathVariable String routeName, @PathVariable String month, @PathVariable String year) {
 		ResponseEntity<Integer> re = null;
 		int revenue = 0;
@@ -89,8 +90,8 @@ public class BusOperatorController {
 		return re;
 	}
 	
-	//Getting yearly revenue by bus route using service with Http Status
-	@GetMapping("/YearlyRevenue/{routeName}/{year}")
+	//REST Method to find yearly revenue generated from a specific bus route
+	@GetMapping("/yearlyrevenue/{routeName}/{year}")
 	public ResponseEntity<Integer> getYearlyRevenueByBusRoute(@PathVariable String routeName, @PathVariable String year) {
 		ResponseEntity<Integer> re = null;
 		int revenue = 0;
@@ -104,4 +105,5 @@ public class BusOperatorController {
 		}
 		return re;
 	}
+	
 }

@@ -8,7 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.cap.sprint.BusApp.entities.Bus;
 import com.cap.sprint.BusApp.entities.BusOperator;
-import com.cap.sprint.BusApp.services.IBusOperatorService;
+import com.cap.sprint.BusApp.serviceinterfaces.IBusOperatorService;
 
 @SpringBootTest
 class TestBusOperatorService {
@@ -54,7 +54,7 @@ class TestBusOperatorService {
 	@Test
 	void addBusOperator()
 	{
-		BusOperator busOp=new BusOperator("Sid","123",null,null,null);
+		BusOperator busOp=new BusOperator("Sid","123",null,null);
 		busOperatorService.addBusOperator(busOp);
 	}
 	

@@ -1,19 +1,15 @@
 package com.cap.sprint.BusApp.test;
 
-import static org.junit.jupiter.api.Assertions.fail;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 import javax.transaction.Transactional;
 
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.cap.sprint.BusApp.entities.Booking;
 import com.cap.sprint.BusApp.entities.Bus;
-import com.cap.sprint.BusApp.entities.BusRoute;
 import com.cap.sprint.BusApp.repos.IBookingRepository;
 import com.cap.sprint.BusApp.repos.IBusRepository;
 import com.cap.sprint.BusApp.services.AdminServiceImpl;
@@ -63,8 +59,9 @@ class TestAdminServiceImpl {
 	@Transactional
 	void testUpdateBusRoute() {
 		Bus bus = new Bus("ABC123",2,200,null);
-		BusRoute busRoute = new BusRoute("B to A","B","A",null);
-		adminServiceImpl.updateBusRoute(bus, busRoute.getRouteName());
+
+		String busRoute = "aaa";
+		adminServiceImpl.updateBusRoute(bus, busRoute);
 		Booking b = bookingRepository.findByBusBusNumber(bus.getBusNumber());
 		System.out.println(bus);
 		System.out.println(b);

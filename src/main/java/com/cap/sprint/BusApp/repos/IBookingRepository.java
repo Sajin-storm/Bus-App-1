@@ -12,15 +12,26 @@ import com.cap.sprint.BusApp.entities.Booking;
 @Repository
 public interface IBookingRepository extends JpaRepository<Booking,Integer>{
 
+	//Repository methods to be used for fetching data
+	
 	public Optional<Booking> findById(int id);
+	
 	public Booking findByUsername(String username);
+	
 	public List<Booking> findByDate(LocalDate date);
+	
 	public Optional<Booking> findByBookingId(long id);
+	
 	public List<Booking> findByBusNumber(String busNumber);
+	
 	public List<Booking> findBySource(String source);
+	
 	public List<Booking> findByDestination(String destination);
+	
 	public List<Booking> findByBusRouteRouteName(String routeName);
+	
 	public Booking findByBusBusNumber(String busNumber);
+	
 	public List<Booking> findByBusBusOperatorBusOperatorUsername(String busOperatorUsername);
 	
 	public List<Booking> findByBusRouteRouteNameAndDate(String routeName, LocalDate date);

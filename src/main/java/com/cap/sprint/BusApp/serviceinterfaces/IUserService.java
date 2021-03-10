@@ -1,10 +1,12 @@
-package com.cap.sprint.BusApp.services;
+package com.cap.sprint.BusApp.serviceinterfaces;
 
 import java.util.List;
 
 import com.cap.sprint.BusApp.entities.User;
 
 public interface IUserService {
+	
+	//Service methods to be implemented by Service Implementation Class
 	
 	public void addUser(User user);
 	
